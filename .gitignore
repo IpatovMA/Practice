@@ -1,4 +1,5 @@
-/bin
+/bin/Release
+/bin/Debug/Practice.exe
 /obj
 *.depend
 *.layout
