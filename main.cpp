@@ -47,6 +47,43 @@ double mediana(vector<double> M)
     }
     return Med;
 }
+
+void
+svg_begin(double width, double height)
+{
+    cout << "<?xml version='1.0' encoding='UTF-8'?>\n";
+    cout << "<svg width='" << width << "' height='" << height << "' "
+         << "viewBox='0 0 " << width << " " << height << "' "
+         << "xmlns='http://www.w3.org/2000/svg'>\n";
+}
+
+void
+svg_end()
+{
+    cout << "</svg>\n";
+}
+
+void svg_text(double left, double baseline, string text)
+{
+    cout<< "<text x= \" "<<left<<" \" y=\" " <<baseline<<" \">"<<text<<"</text>";
+}
+
+void
+svg_rect(double x, double y, double width, double height, string stroke="#4F4F4F", string fill = "#636363")
+{
+    cout<< "<rect x= \" "<<x<<" \" y=\" " <<y
+        <<" \" width = \" "<<width<<" \" height=\" " <<height
+        <<" \" fill='"<<fill<<"' stroke='"<<stroke<<"'/>";
+}
+
+void
+svg_line(double x1,double y1,double x2, double y2, string stroke="#4F4F4F")
+{
+    cout<< "<line x1= '"<<x1<<"' y1='"<<y1
+        << "void<line x2= '"<<x2<<"' y2='"<<y2
+        <<"' stroke='"<<stroke<<"'/>";
+}
+
 int main(int argc, char* argv[])
 {
     // Инициализация ОУ.
@@ -60,7 +97,11 @@ int main(int argc, char* argv[])
     enter(K,M,T,Nmin,Nmax,Nstep);
     M.resize(K);
 
-    cout<<"#"<<'\t'<<"Average"<<'\t'<<"Mediana"<<'\t'<<"|Aver-Med|"<<'\t';
+    int IMG_WIDTH = 800;
+    int IMG_HEIGHT=400;
+    svg_begin(IMG_WIDTH,IMG_HEIGHT);
+
+ //   cout<<"#"<<'\t'<<"Average"<<'\t'<<"Mediana"<<'\t'<<"|Aver-Med|"<<'\t';
 
     for (int N=Nmin;N<=Nmax;N+=Nstep){
     //заполенение массива показаний с датчиков
@@ -104,8 +145,11 @@ int main(int argc, char* argv[])
     }
     cout<<'\n';
     double diff = fabs(Aver[0]-Med[0]);
-    cout<<N<<'\t'<<Aver[0]<<'\t'<<Med[0]<<'\t'<<diff<<'\t';
+   // cout<<N<<'\t'<<Aver[0]<<'\t'<<Med[0]<<'\t'<<diff<<'\t';
+
+
 
     }
+    svg_end();
     return 0;
 }
