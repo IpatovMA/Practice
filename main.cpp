@@ -79,7 +79,7 @@ svg_rect(double x, double y, double width, double height, string stroke="#4F4F4F
 void
 svg_line(double x1,double y1,double x2, double y2, string stroke="#4F4F4F")
 {
-    cout<< "<line x1= '"<<x1<<"' y1='"<<y1
+    cout<< "<line style=\"border-radius:5px\" x1= '"<<x1<<"' y1='"<<y1
         << "' x2= '"<<x2<<"' y2='"<<y2
         <<"' stroke='"<<stroke<<"'/> \n";
 }
@@ -97,8 +97,8 @@ int main(int argc, char* argv[])
     enter(K,M,T,Nmin,Nmax,Nstep);
     M.resize(K);
 
-    int IMG_WIDTH = 800;
-    int IMG_HEIGHT=400;
+    int IMG_WIDTH = 1000;
+    int IMG_HEIGHT=200;
     svg_begin(IMG_WIDTH,IMG_HEIGHT);
     bool flag = 1;
  //   cout<<"#"<<'\t'<<"Average"<<'\t'<<"Mediana"<<'\t'<<"|Aver-Med|"<<'\t';

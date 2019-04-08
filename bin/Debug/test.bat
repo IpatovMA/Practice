@@ -1,2 +1,2 @@
-Practice.exe <in.txt 2>NUL
-pause
+Practice.exe <in.txt >out.svg 2>NUL 
+
