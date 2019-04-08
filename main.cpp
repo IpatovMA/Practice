@@ -149,9 +149,12 @@ int main(int argc, char* argv[])
    // cout<<N<<'\t'<<Aver[0]<<'\t'<<Med[0]<<'\t'<<diff<<'\t';
     if (flag){diffX=diff; flag=0;}
     else{
-    double scale_factor_x= IMG_WIDTH/(Nmax*Nstep);
-  //  double scale_factor_y= IMG_HEIGHT/
-    svg_line(((N-Nstep)*scale_factor_x),(IMG_HEIGHT-diffX),(N*scale_factor_x),(IMG_HEIGHT-diff));
+  //      bool scale_need = IMG_WIDTH < (Nmax*Nstep*5)
+    double scale_factor_x= 1.0*IMG_WIDTH/(Nmax-Nmin);
+    //double scale_factor_x= 5;
+   // if (scale_need){scale_factor_x=(double)(IMG_WIDTH/(Nmax*Nstep*5));}
+   double scale_factor_y= 5;
+    svg_line(((N-Nstep)*scale_factor_x),(IMG_HEIGHT-diffX*scale_factor_y),(N*scale_factor_x),(IMG_HEIGHT-diff*scale_factor_y));
   //  svg_text(1,IMG_HEIGHT-5,(string)(N))
    // svg_rect(10,20,200,200);
     diffX=diff;
