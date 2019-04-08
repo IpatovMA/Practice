@@ -80,8 +80,8 @@ void
 svg_line(double x1,double y1,double x2, double y2, string stroke="#4F4F4F")
 {
     cout<< "<line x1= '"<<x1<<"' y1='"<<y1
-        << "void<line x2= '"<<x2<<"' y2='"<<y2
-        <<"' stroke='"<<stroke<<"'/>";
+        << "' x2= '"<<x2<<"' y2='"<<y2
+        <<"' stroke='"<<stroke<<"'/> \n";
 }
 
 int main(int argc, char* argv[])
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
     int IMG_WIDTH = 800;
     int IMG_HEIGHT=400;
     svg_begin(IMG_WIDTH,IMG_HEIGHT);
-
+    bool flag = 1;
  //   cout<<"#"<<'\t'<<"Average"<<'\t'<<"Mediana"<<'\t'<<"|Aver-Med|"<<'\t';
 
     for (int N=Nmin;N<=Nmax;N+=Nstep){
@@ -143,13 +143,19 @@ int main(int argc, char* argv[])
         Aver[i] = average(Z[i]);
         Med[i] = mediana(Z[i]);
     }
-    cout<<'\n';
+
     double diff = fabs(Aver[0]-Med[0]);
+    double diffX;
    // cout<<N<<'\t'<<Aver[0]<<'\t'<<Med[0]<<'\t'<<diff<<'\t';
-
-
-
-    }
+    if (flag){diffX=diff; flag=0;}
+    else{
+    double scale_factor_x= IMG_WIDTH/(Nmax*Nstep);
+  //  double scale_factor_y= IMG_HEIGHT/
+    svg_line(((N-Nstep)*scale_factor_x),(IMG_HEIGHT-diffX),(N*scale_factor_x),(IMG_HEIGHT-diff));
+  //  svg_text(1,IMG_HEIGHT-5,(string)(N))
+   // svg_rect(10,20,200,200);
+    diffX=diff;
+    }}
     svg_end();
     return 0;
 }
